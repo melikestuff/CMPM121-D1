@@ -4,3 +4,12 @@ import "./style.css";
 document.body.innerHTML = `
   <p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>
 `;
+
+const button = document.createElement("button");
+button.textContent = "Open Dialog";
+button.addEventListener("click", () => {
+  alert("Dialog would appear here!");
+});
+
+// Add it to the page
+document.body.appendChild(button);
