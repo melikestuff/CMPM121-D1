@@ -1,4 +1,4 @@
-import exampleIconUrl from "./noun-paperclip-7598668-00449F.png";
+import exampleIconUrl from "./Grass_Block_JE7_BE6.png"; //src/Grass_Block_JE7_BE6.png
 import "./style.css";
 
 document.body.innerHTML = `
