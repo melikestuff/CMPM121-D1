@@ -5,6 +5,8 @@ import "./style.css";
 
 // Counter variable to track how many pts/clicks player has made
 let counter: number = 0;
+// The time.deltatime of unity lol kinda
+let lastTime = performance.now(); // Track time since last frame.
 
 // ---------------------------------------------
 // Create a display to showcase pts/clicks so far
@@ -47,12 +49,23 @@ button.addEventListener("click", () => {
   counterDisplay.textContent = `${counter} blocks`;
 });
 
-// The setinterval functino, runs every second
-setInterval(() => {
-  counter++;
-  counterDisplay.textContent = `${counter} blocks`;
-}, 1000);
+// Continuous growth per frame
+function update(currentTime: number) {
+  // Calculate how much time has passed since last frame (in seconds)
+  const deltaTime = (currentTime - lastTime) / 1000;
+  lastTime = currentTime;
 
+  // Increase counter by 1 unit per second (scaled by deltaTime)
+  counter += deltaTime * 1.0;
+
+  // Update display
+  counterDisplay.textContent = `${counter.toFixed(2)} blocks`;
+
+  // Schedule next frame
+  requestAnimationFrame(update);
+}
+
+requestAnimationFrame(update);
 // Add anything to display to the page
 document.body.appendChild(button);
 document.body.appendChild(counterDisplay);
