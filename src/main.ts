@@ -1,15 +1,25 @@
-import exampleIconUrl from "./Grass_Block_JE7_BE6.png"; //src/Grass_Block_JE7_BE6.png
+//import exampleIconUrl from "./Grass_Block_JE7_BE6.png"; //src/Grass_Block_JE7_BE6.png
 import "./style.css";
 
-document.body.innerHTML = `
-  <p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>
-`;
+//document.body.innerHTML = `<p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>`;
+
+//-------------------------------------------
+// CLickable button that adds to your currency
 
 const button = document.createElement("button");
-button.textContent = "Open Dialog";
+
+// Button Settings
+// Step's require emote in the text box, soooo
+button.textContent = "🍎";
+
+button.style.fontSize = "60px";
+button.style.display = "block";
+button.style.margin = "100px auto";
+
+// On button Press
 button.addEventListener("click", () => {
-  alert("Dialog would appear here!");
+  console.log("BUTTON BEEN PRESSED!");
 });
 
-// Add it to the page
+// Add Button to page
 document.body.appendChild(button);
