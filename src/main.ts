@@ -47,6 +47,12 @@ button.addEventListener("click", () => {
   counterDisplay.textContent = `${counter} blocks`;
 });
 
+// The setinterval functino, runs every second
+setInterval(() => {
+  counter++;
+  counterDisplay.textContent = `${counter} blocks`;
+}, 1000);
+
 // Add anything to display to the page
 document.body.appendChild(button);
 document.body.appendChild(counterDisplay);
