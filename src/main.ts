@@ -7,6 +7,8 @@ import "./style.css";
 let counter: number = 0;
 // The time.deltatime of unity lol kinda
 let lastTime = performance.now(); // Track time since last frame.
+// AMT of blocks gained automatically per second avg
+let rate = 0; // blocks per second (starts at 0)
 
 // ---------------------------------------------
 // Create a display to showcase pts/clicks so far
@@ -22,16 +24,16 @@ counterDisplay.style.marginTop = "20px";
 //-------------------------------------------
 // Step 1: CLickable button that adds to your currency
 
-const button = document.createElement("button");
+const clickButton = document.createElement("button");
 
 // Button Settings
 // Step's require emote in the text box, soooo
 
-button.style.background = "none";
-button.style.fontSize = "60px";
-button.style.display = "block";
-button.style.margin = "100px auto";
-button.style.border = "none";
+clickButton.style.background = "none";
+clickButton.style.fontSize = "60px";
+clickButton.style.display = "block";
+clickButton.style.margin = "100px auto";
+clickButton.style.border = "none";
 
 // Change button to hold an image
 const img = document.createElement("img");
@@ -40,32 +42,59 @@ img.alt = "Grass Block";
 img.style.width = "100px";
 img.style.height = "100px";
 img.style.objectFit = "cover";
-button.appendChild(img);
+clickButton.appendChild(img);
 
 // On button Press
-button.addEventListener("click", () => {
+clickButton.addEventListener("click", () => {
   console.log("BUTTON BEEN PRESSED!");
   counter++;
-  counterDisplay.textContent = `${counter} blocks`;
+  updateDisplay();
 });
+
+//-------------------------------------------
+// Upgrade purchase button
+const upgradeButton = document.createElement("button");
+
+//Settings for upgrade button
+upgradeButton.textContent = "Buy Upgrade (+1 block/sec)";
+upgradeButton.style.display = "block";
+upgradeButton.style.margin = "20px auto";
+upgradeButton.style.padding = "10px 20px";
+upgradeButton.style.fontSize = "18px";
+upgradeButton.disabled = true; // starts locked
+
+// On click event for upgrade button
+upgradeButton.addEventListener("click", () => {
+  const cost = 10;
+  if (counter >= cost) {
+    counter -= cost;
+    rate += 1; // increase growth rate
+    updateDisplay();
+  }
+});
+
+// Display function so more usability
+// If block count > 10, display and let player click on the upgrade button
+// Both manuel clicks and automatic clicks trigger this function.
+function updateDisplay() {
+  counterDisplay.textContent = `${counter.toFixed(2)} blocks`;
+  upgradeButton.disabled = counter < 10;
+}
 
 // Continuous growth per frame
 function update(currentTime: number) {
-  // Calculate how much time has passed since last frame (in seconds)
   const deltaTime = (currentTime - lastTime) / 1000;
   lastTime = currentTime;
 
-  // Increase counter by 1 unit per second (scaled by deltaTime)
-  counter += deltaTime * 1.0;
+  // Add automatic income based on rate
+  counter += rate * deltaTime;
 
-  // Update display
-  counterDisplay.textContent = `${counter.toFixed(2)} blocks`;
-
-  // Schedule next frame
+  updateDisplay();
   requestAnimationFrame(update);
 }
 
 requestAnimationFrame(update);
 // Add anything to display to the page
-document.body.appendChild(button);
+document.body.appendChild(clickButton);
 document.body.appendChild(counterDisplay);
+document.body.appendChild(upgradeButton);
