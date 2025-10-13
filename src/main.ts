@@ -11,10 +11,16 @@ let lastTime = performance.now(); // Track time since last frame.
 let rate = 0; // blocks per second (starts at 0)
 
 // Step 1: Declare the valid upgrade names
-type UpgradeName = "A" | "B" | "C";
+type UpgradeName = "A" | "B" | "C" | "D" | "E";
 
 // Step 2: Strongly type your upgradeCounts
-const upgradeCounts: Record<UpgradeName, number> = { A: 0, B: 0, C: 0 };
+const upgradeCounts: Record<UpgradeName, number> = {
+  A: 0,
+  B: 0,
+  C: 0,
+  D: 0,
+  E: 0,
+};
 
 // Store information about each upgrade and have scaleability
 const upgrades: {
@@ -22,11 +28,45 @@ const upgrades: {
   label: string;
   cost: number;
   rate: number;
+  description: string;
   button?: HTMLButtonElement;
 }[] = [
-  { name: "A", label: "⛏️ Miner (+0.1/sec)", cost: 10, rate: 0.1 },
-  { name: "B", label: "🤖 Drone (+2/sec)", cost: 100, rate: 2 },
-  { name: "C", label: "🏗️ Excavator  (+50/sec)", cost: 1000, rate: 50 },
+  {
+    name: "A",
+    label: "⛏️ Miner (+0.1/sec)",
+    cost: 10,
+    rate: 0.1,
+    description:
+      "A classic human with a classic iron pickaxe, reliable but slow",
+  },
+  {
+    name: "B",
+    label: "🤖 Drone (+2/sec)",
+    cost: 100,
+    rate: 2,
+    description: "An autonomous mining drone that never tires.",
+  },
+  {
+    name: "C",
+    label: "🏗️ Excavator  (+50/sec)",
+    cost: 1000,
+    rate: 50,
+    description: "A massive machine that unearths the ground",
+  },
+  {
+    name: "D",
+    label: "🚜 Excavator Fleet (+500 ore/sec)",
+    cost: 10000,
+    rate: 500,
+    description: "Fleet of heavy excavators digging around the clock.",
+  },
+  {
+    name: "E",
+    label: "🪐 Quantum Drill Array (+10000 ore/sec)",
+    cost: 100000,
+    rate: 10000,
+    description: "Harness quantum tunneling to mine entire planets.",
+  },
 ];
 
 // ---------------------------------------------
@@ -88,11 +128,23 @@ upgradesContainer.style.gap = "10px";
 
 // Create one button for each upgrade type
 upgrades.forEach((item) => {
+  const container = document.createElement("div");
+  container.style.display = "flex";
+  container.style.flexDirection = "column";
+  container.style.alignItems = "center";
+  container.style.marginBottom = "10px";
+
   const btn = document.createElement("button");
   btn.textContent = `${item.label} — Cost: ${item.cost}`;
   btn.style.padding = "8px 16px";
   btn.style.fontSize = "16px";
   btn.disabled = true;
+
+  const desc = document.createElement("p");
+  desc.textContent = item.description;
+  desc.style.margin = "4px 0";
+  desc.style.fontSize = "14px";
+  desc.style.color = "#aaa";
 
   btn.addEventListener("click", () => {
     if (counter >= item.cost) {
@@ -105,6 +157,8 @@ upgrades.forEach((item) => {
   });
 
   upgradesContainer.appendChild(btn);
+  container.appendChild(desc);
+  upgradesContainer.appendChild(container);
   item["button"] = btn; // store reference for later
 });
 
