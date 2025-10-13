@@ -77,6 +77,7 @@ clickButton.addEventListener("click", () => {
   updateDisplay();
 });
 
+//Step 9
 //-------------------------------------------
 // --- Upgrade buttons container ---
 const upgradesContainer = document.createElement("div");
