@@ -9,11 +9,21 @@ let counter: number = 0;
 let lastTime = performance.now(); // Track time since last frame.
 // AMT of blocks gained automatically per second avg
 let rate = 0; // blocks per second (starts at 0)
-// Track upgrades so far
-let upgradeCounts = { A: 0, B: 0, C: 0 };
+
+// Step 1: Declare the valid upgrade names
+type UpgradeName = "A" | "B" | "C";
+
+// Step 2: Strongly type your upgradeCounts
+const upgradeCounts: Record<UpgradeName, number> = { A: 0, B: 0, C: 0 };
 
 // Store information about each upgrade and have scaleability
-const upgrades = [
+const upgrades: {
+  name: UpgradeName;
+  label: string;
+  cost: number;
+  rate: number;
+  button?: HTMLButtonElement;
+}[] = [
   { name: "A", label: "Cursor (+0.1/sec)", cost: 10, rate: 0.1 },
   { name: "B", label: "Miner (+2/sec)", cost: 100, rate: 2 },
   { name: "C", label: "Factory (+50/sec)", cost: 1000, rate: 50 },
