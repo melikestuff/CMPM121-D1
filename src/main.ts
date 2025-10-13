@@ -24,9 +24,9 @@ const upgrades: {
   rate: number;
   button?: HTMLButtonElement;
 }[] = [
-  { name: "A", label: "Cursor (+0.1/sec)", cost: 10, rate: 0.1 },
-  { name: "B", label: "Miner (+2/sec)", cost: 100, rate: 2 },
-  { name: "C", label: "Factory (+50/sec)", cost: 1000, rate: 50 },
+  { name: "A", label: "⛏️ Miner (+0.1/sec)", cost: 10, rate: 0.1 },
+  { name: "B", label: "🤖 Drone (+2/sec)", cost: 100, rate: 2 },
+  { name: "C", label: "🏗️ Excavator  (+50/sec)", cost: 1000, rate: 50 },
 ];
 
 // ---------------------------------------------
