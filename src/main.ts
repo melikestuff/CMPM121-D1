@@ -98,6 +98,7 @@ upgrades.forEach((item) => {
       counter -= item.cost;
       rate += item.rate;
       upgradeCounts[item.name]++;
+      item.cost = +(item.cost * 1.15).toFixed(2);
       updateDisplay();
     }
   });
