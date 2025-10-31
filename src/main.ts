@@ -10,10 +10,10 @@ let lastTime = performance.now(); // Track time since last frame.
 // AMT of blocks gained automatically per second avg
 let rate = 0; // blocks per second (starts at 0)
 
-// Step 1: Declare the valid upgrade names
+// Upgrade Definitions
 type UpgradeName = "A" | "B" | "C" | "D" | "E";
 
-// Step 2: Strongly type your upgradeCounts
+// Upgrade Definitions - Track how many of each upgrade the player has
 const upgradeCounts: Record<UpgradeName, number> = {
   A: 0,
   B: 0,
@@ -89,7 +89,7 @@ rateDisplay.style.textAlign = "center";
 rateDisplay.style.marginBottom = "20px";
 
 //-------------------------------------------
-// Step 1: CLickable button that adds to your currency
+// UI Element Setup
 
 const clickButton = document.createElement("button");
 
@@ -117,7 +117,6 @@ clickButton.addEventListener("click", () => {
   updateDisplay();
 });
 
-//Step 9
 //-------------------------------------------
 // --- Upgrade buttons container ---
 const upgradesContainer = document.createElement("div");
