@@ -11,15 +11,20 @@ let lastTime = performance.now(); // Track time since last frame.
 let rate = 0; // blocks per second (starts at 0)
 
 // Upgrade Definitions
-type UpgradeName = "A" | "B" | "C" | "D" | "E";
+type UpgradeName =
+  | "Miner"
+  | "Drone"
+  | "Excavator"
+  | "Excavator Fleet"
+  | "Quantum Drill Array";
 
 // Upgrade Definitions - Track how many of each upgrade the player has
 const upgradeCounts: Record<UpgradeName, number> = {
-  A: 0,
-  B: 0,
-  C: 0,
-  D: 0,
-  E: 0,
+  Miner: 0,
+  Drone: 0,
+  Excavator: 0,
+  "Excavator Fleet": 0,
+  "Quantum Drill Array": 0,
 };
 
 // Store information about each upgrade and have scaleability
@@ -32,7 +37,7 @@ const upgrades: {
   button?: HTMLButtonElement;
 }[] = [
   {
-    name: "A",
+    name: "Miner",
     label: "⛏️ Miner (+0.1/sec)",
     cost: 10,
     rate: 0.1,
@@ -40,28 +45,28 @@ const upgrades: {
       "A classic human with a classic iron pickaxe, reliable but slow",
   },
   {
-    name: "B",
+    name: "Drone",
     label: "🤖 Drone (+2/sec)",
     cost: 100,
     rate: 2,
     description: "An autonomous mining drone that never tires.",
   },
   {
-    name: "C",
+    name: "Excavator",
     label: "🏗️ Excavator  (+50/sec)",
     cost: 1000,
     rate: 50,
     description: "A massive machine that unearths the ground",
   },
   {
-    name: "D",
+    name: "Excavator Fleet",
     label: "🚜 Excavator Fleet (+500 ore/sec)",
     cost: 10000,
     rate: 500,
     description: "Fleet of heavy excavators digging around the clock.",
   },
   {
-    name: "E",
+    name: "Quantum Drill Array",
     label: "🪐 Quantum Drill Array (+10000 ore/sec)",
     cost: 100000,
     rate: 10000,
