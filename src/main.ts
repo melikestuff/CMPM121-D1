@@ -162,32 +162,6 @@ upgrades.forEach((item) => {
   item["button"] = btn; // store reference for later
 });
 
-//Old upgrade button
-//Used as a reference for newer one
-/*
-//-------------------------------------------
-// Upgrade purchase button
-const upgradeButton = document.createElement("button");
-
-//Settings for upgrade button
-upgradeButton.textContent = "Buy Upgrade (+1 block/sec)";
-upgradeButton.style.display = "block";
-upgradeButton.style.margin = "20px auto";
-upgradeButton.style.padding = "10px 20px";
-upgradeButton.style.fontSize = "18px";
-upgradeButton.disabled = true; // starts locked
-
-// On click event for upgrade button
-upgradeButton.addEventListener("click", () => {
-  const cost = 10;
-  if (counter >= cost) {
-    counter -= cost;
-    rate += 1; // increase growth rate
-    updateDisplay();
-  }
-});
-*/
-
 // Display function so more usability
 // If block count > 10, display and let player click on the upgrade button
 // Both manuel clicks and automatic clicks trigger this function.
