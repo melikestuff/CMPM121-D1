@@ -3,3 +3,33 @@
   vertical-align: top;
   border: 1px solid salmon;
 }
+
+/* Background color inspired by ThatGuyIain's incremental game:
+   https://thatguyiain.github.io/cmpm-121-incremental-game
+   Their use of soft color palettes made their interface feel more thematic.
+*/
+
+body {
+  background-color: #ccffcc; /* light green */
+  color: #222; /* optional: keep text readable */
+  font-family: sans-serif; /* optional: make it look cleaner */
+  margin: 0;
+  padding: 0;
+}
+
+/* Rounded button design inspired by Stan-21's incremental game:
+   https://stan-21.github.io/cmpm-121-f25-d1
+   Their buttons had rounded edges that made the interface more modern and inviting. 
+*/
+
+button {
+  border-radius: 12px; /* makes edges rounded */
+  border: 2px solid #4caf50; /* optional: adds a green outline */
+  background-color: #e6ffe6; /* optional: light green to match your background */
+  transition: background-color 0.3s ease; /* smooth hover effect */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ccffcc; /* slightly darker on hover */
+}
